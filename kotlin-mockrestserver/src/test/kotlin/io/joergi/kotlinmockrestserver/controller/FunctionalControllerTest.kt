@@ -83,7 +83,7 @@ class FunctionalControllerTest {
             responseType
         )
 
-        response.statusCode shouldBe HttpStatus.OK
+        response.statusCode shouldBe HttpStatus.INTERNAL_SERVER_ERROR
 
     }
 
@@ -109,6 +109,26 @@ class FunctionalControllerTest {
                 responseType
             )
         }
+
+    }
+
+    @Test
+    fun `when calling service, and client timeout, it should return 500 - but response type is wrong`() {
+
+        mockServer?.expect(MockRestRequestMatchers.requestTo(URI("http://localhost:8082/profiles/simple-get")))
+            ?.andExpect(MockRestRequestMatchers.method(HttpMethod.GET))
+            ?.andRespond(
+                MockRestResponseCreators.withStatus(HttpStatus.REQUEST_TIMEOUT)
+                    .contentType(MediaType.APPLICATION_JSON))
+
+        val response = testRestTemplate.exchange(
+            "/profiles/simple-get",
+            HttpMethod.GET,
+            null,
+            String::class.java
+        )
+
+        response.statusCode shouldBe HttpStatus.INTERNAL_SERVER_ERROR
 
     }
 
