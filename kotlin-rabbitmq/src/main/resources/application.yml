@@ -6,3 +6,5 @@ rabbitmq:
     port: YOUR_AMP_PORT
     queue: YOUR_QUEUE
     virtualhost: YOUR_VIRTUAL_HOST
+    exchange: MY_EXCHANGE
+    routingkey: "MY_ROUTING_KEY"
