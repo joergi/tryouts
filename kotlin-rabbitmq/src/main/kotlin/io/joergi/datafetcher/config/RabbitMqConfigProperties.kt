@@ -11,5 +11,7 @@ data class RabbitMqConfigProperties(
     val username: String = "",
     val password: String = "",
     val virtualhost: String = "",
-    val queue: String = ""
+    val queue: String = "",
+    val exchange: String = "",
+    val routingkey: String = ""
 )

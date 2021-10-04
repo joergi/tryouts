@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean
 import org.springframework.stereotype.Service
 
 @Service
-class RabbitMqService(@Autowired val rabbitMqConfigProperties: RabbitMqConfigProperties) {
+class RabbitMqFetcherService(@Autowired val rabbitMqConfigProperties: RabbitMqConfigProperties) {
 
     @Bean
     fun queue(): Queue? {
