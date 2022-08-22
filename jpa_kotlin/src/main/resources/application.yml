@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5455/product
+    username: joergi
+    password: joergi-pw
+
+
+  jpa:
+    properties.hibernate:
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+    #  jdbc.lob.non_contextual_creation: true
+    #hibernate.ddl-auto: create
+#      show-sql: true
+
+
+flyway:
+  user: joergi
+  password: joergi-pw
+  enabled: true
+  validate-on-migrate: true
+  url: jdbc:postgresql://localhost:5455/product

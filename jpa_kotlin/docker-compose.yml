@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  db:
+    container_name: pg-db-jpa-product
+    image: postgres
+    environment:
+      - POSTGRES_USER=joergi
+      - POSTGRES_PASSWORD=joergi-pw
+      - POSTGRES_DB=product
+    volumes:
+      - ./database-data:/var/lib/postgresql/data/
+    ports:
+      - 5455:5432
