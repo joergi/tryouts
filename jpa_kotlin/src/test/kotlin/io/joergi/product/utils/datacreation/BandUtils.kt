@@ -14,13 +14,11 @@ object BandUtils {
     }
 
     fun createBandWithLinks(): Band {
-         return Band(
+        var band = Band(
             name = "MEA with links",
             description = "merch em all",
-            links = LinkUtils.createListOfLinks()
-            )
+        )
+        band.links = LinkUtils.createListOfLinks(band)
+        return band
     }
-
-
-
 }

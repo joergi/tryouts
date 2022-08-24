@@ -4,7 +4,6 @@ spring:
     username: joergi
     password: joergi-pw
 
-
   jpa:
     properties.hibernate:
       dialect: org.hibernate.dialect.PostgreSQLDialect

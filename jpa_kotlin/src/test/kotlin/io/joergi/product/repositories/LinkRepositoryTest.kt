@@ -13,7 +13,7 @@ import org.springframework.test.context.ActiveProfiles
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ActiveProfiles("test")
-class LinkRepositoryTest{
+class LinkRepositoryTest {
     @Autowired
     private val bandRepository: BandRepository? = null
 
@@ -21,7 +21,7 @@ class LinkRepositoryTest{
     private val linkRepository: LinkRepository? = null
 
     @Test
-    fun `creating band with link should have cross reference`(){
+    fun `creating band with link should have cross reference`() {
         bandRepository!!.save(BandUtils.createBandWithLinks())
         val linksFromDb: List<Link> = (linkRepository!!.findAll() as List<Link>)
         linksFromDb.size shouldBe 2
@@ -34,6 +34,7 @@ class LinkRepositoryTest{
     fun start() {
         cleanUp()
     }
+
     @AfterEach
     fun end() {
         cleanUp()
