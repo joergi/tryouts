@@ -31,12 +31,6 @@ dependencies {
 	implementation("org.apache.beam:beam-sdks-java-core:2.53.0")
 	implementation("org.apache.beam:beam-runners-google-cloud-dataflow-java:2.53.0")
 	testImplementation("org.apache.beam:beam-runners-direct-java:2.53.0")
-
-//extra:
-	implementation("org.apache.beam:beam-sdks-java-io-kafka:2.53.0")
-	implementation("io.confluent:kafka-avro-serializer:5.3.2")
-
-
 }
 
 tasks.withType<KotlinCompile> {
