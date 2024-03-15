@@ -33,7 +33,6 @@ jobs:
       - name: ls
         run: ls -lah
       - run: echo $JAVA_HOME
-      - run: ./gradlew clean installDist
       - uses: sdkman/sdkman-action@main
         id: sdkman
         with:
