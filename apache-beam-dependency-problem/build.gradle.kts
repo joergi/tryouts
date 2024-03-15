@@ -5,6 +5,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.1.4"
 	kotlin("jvm") version "1.9.22"
 	kotlin("plugin.spring") version "1.9.22"
+	id("project-report")
 	java
 	application
 	idea
@@ -16,8 +17,10 @@ version = "0.0.1-SNAPSHOT"
 
 java {
 	sourceCompatibility = JavaVersion.VERSION_21
+	consistentResolution {
+		useCompileClasspathVersions()
+	}
 }
-
 val javaVersion = JavaVersion.VERSION_21
 
 kotlin {
@@ -59,3 +62,8 @@ tasks.withType<Test> {
 	useJUnitPlatform()
 }
 
+tasks {
+	withType<JavaCompile> {
+		options.encoding = "UTF-8"
+	}
+}
