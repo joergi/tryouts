@@ -32,8 +32,11 @@ jobs:
       - uses: actions/checkout@v4
       - name: ls
         run: ls -lah
-      - uses: sdkman/sdkman-action@main
+      - uses: sdkman/sdkman-action@v1
         id: sdkman
+        with:
+          candidate: java
+          version: 21.0.1-librca
       - run: java -version
       - run: ./gradlew clean installDist
       - name: show dependencies
