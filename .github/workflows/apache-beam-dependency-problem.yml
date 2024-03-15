@@ -34,7 +34,7 @@ jobs:
         run: ls -lah
       - run: echo $JAVA_HOME
       - run: apt remove -y temurin-11-jdk-amd64
-      - uses: renatoathaydes/setup-java-sdkman@v2.1.1
+      - uses: renatoathaydes/setup-java-sdkman@main
         with:
           java-version: '21.0.1-librca' # The SDKMAN! JDK version to use.
       - run: java -version
