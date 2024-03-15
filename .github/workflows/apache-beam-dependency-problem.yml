@@ -45,6 +45,14 @@ jobs:
       - run: echo 'export PATH=${PATH}:${JAVA_HOME}/bin' >> ~/.bash_profile
       - run: cat ~/.bash_profile
       - run: source ~/.bash_profile
+
+      - run: echo 'export JAVA_HOME=~/.sdkman/candidates/java/current' >> ~/.bashrc
+      - run: echo 'export PATH=${PATH}:${JAVA_HOME}/bin' >> ~/.bashrc
+      - run: cat ~/.bashrc
+      - run: source ~/.bashrc
+
+
+
       - run: echo $JAVA_HOME
       - run: ./gradlew clean installDist
       - name: show dependencies
