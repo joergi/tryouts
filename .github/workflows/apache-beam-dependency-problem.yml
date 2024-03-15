@@ -32,7 +32,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: ls
         run: ls -lah
-      - run: java -version
+      - run: echo $JAVA_HOME
       - run: ./gradlew clean installDist
       - uses: sdkman/sdkman-action@main
         id: sdkman
@@ -40,6 +40,9 @@ jobs:
           candidate: java
           version: 21.0.1-librca
       - run: java -version
+      - run: echo $JAVA_HOME
+      - run: export JAVA_HOME=~/.sdkman/candidates/java/current
+      - run: echo $JAVA_HOME
       - run: ./gradlew clean installDist
       - name: show dependencies
         run: ls -lah  build/install/apache-beam-dependency-problem/lib
