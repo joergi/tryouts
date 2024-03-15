@@ -40,7 +40,6 @@ jobs:
           version: 21.0.1-librca
       - run: java -version
       - run: echo $JAVA_HOME
-      - run:
       - run: ls -lah ~/.sdkman/candidates/java/
       - run: echo 'export JAVA_HOME=~/.sdkman/candidates/java/current' >> ~/.bash_profile
       - run: echo 'export PATH=${PATH}:${JAVA_HOME}/bin' >> ~/.bash_profile
