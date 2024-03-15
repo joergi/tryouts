@@ -34,17 +34,10 @@ jobs:
         run: ls -lah
       - run: echo $JAVA_HOME
       - run: apt remove -y temurin-11-jdk-amd64
-      - uses: sdkman/sdkman-action@main
-        id: sdkman
+      - uses: renatoathaydes/setup-java-sdkman@v2.x
         with:
-          candidate: java
-          version: 21.0.1-librca
+          java-version: '21.0.1-librca' # The SDKMAN! JDK version to use.
       - run: java -version
-      - run: echo $JAVA_HOME
-
-
-
-
       - run: echo $JAVA_HOME
       - run: ./gradlew clean installDist
       - name: show dependencies
