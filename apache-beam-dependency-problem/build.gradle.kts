@@ -6,6 +6,7 @@ plugins {
 	kotlin("jvm") version "1.9.22"
 	kotlin("plugin.spring") version "1.9.22"
 	application
+	idea
 	distribution
 }
 
@@ -16,6 +17,19 @@ java {
 	sourceCompatibility = JavaVersion.VERSION_21
 }
 
+val javaVersion = JavaVersion.VERSION_21
+
+kotlin {
+	jvmToolchain {
+		languageVersion.set(JavaLanguageVersion.of(javaVersion.majorVersion))
+	}
+}
+idea {
+	project {
+		jdkName = javaVersion.majorVersion
+		languageLevel = org.gradle.plugins.ide.idea.model.IdeaLanguageLevel(javaVersion)
+	}
+}
 repositories {
 	mavenCentral()
 	maven {
