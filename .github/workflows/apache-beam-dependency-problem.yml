@@ -30,6 +30,8 @@ jobs:
         working-directory: ./apache-beam-dependency-problem
     steps:
       - uses: actions/checkout@v4
+      - name: ls
+        run: ls -lah
       - uses: sdkman/sdkman-action@main
         id: sdkman
       - run: java -version
