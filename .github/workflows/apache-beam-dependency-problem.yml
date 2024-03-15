@@ -41,6 +41,7 @@ jobs:
       - run: java -version
       - run: echo $JAVA_HOME
       - run: export JAVA_HOME=~/.sdkman/candidates/java/current
+      - run: ll ~/.sdkman/candidates/java/
       - run: echo $JAVA_HOME
       - run: ./gradlew clean installDist
       - name: show dependencies
