@@ -5,13 +5,11 @@ on:
   workflow_dispatch: {}
 
 jobs:
-  linux-count-dependecies:
+  pure-java-linux-count-dependecies:
     runs-on: ubuntu-latest
-
     defaults:
       run:
         working-directory: ./apache-beam-dependency-problem
-
     steps:
       - uses: actions/checkout@v4
       - name: Set up JDK 21
@@ -25,13 +23,27 @@ jobs:
       - name: count dependencies
         run: ls build/install/apache-beam-dependency-problem/lib/ | wc -l
 
-  mac-count-dependecies:
-    runs-on: macos-latest
-
+  skdman-java-linux-count-dependecies:
+    runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./apache-beam-dependency-problem
+    steps:
+      - uses: actions/checkout@v4
+      - uses: sdkman/sdkman-action@v1
+        id: sdkman
+      - run: java -version
+      - run: ./gradlew clean installDist
+      - name: show dependencies
+        run: ls -lah  build/install/apache-beam-dependency-problem/lib
+      - name: count dependencies
+        run: ls build/install/apache-beam-dependency-problem/lib/ | wc -l
 
+  mac-count-dependecies:
+    runs-on: macos-latest
+    defaults:
+      run:
+        working-directory: ./apache-beam-dependency-problem
     steps:
       - uses: actions/checkout@v4
       - name: Set up JDK 21
