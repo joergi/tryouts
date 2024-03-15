@@ -30,7 +30,7 @@ jobs:
         working-directory: ./apache-beam-dependency-problem
     steps:
       - uses: actions/checkout@v4
-      - uses: sdkman/sdkman-action:main
+      - uses: sdkman/sdkman-action@main
         id: sdkman
       - run: java -version
       - run: ./gradlew clean installDist
