@@ -49,6 +49,12 @@ dependencies {
 	implementation("org.apache.beam:beam-sdks-java-core:2.53.0")
 	implementation("org.apache.beam:beam-runners-google-cloud-dataflow-java:2.53.0")
 	testImplementation("org.apache.beam:beam-runners-direct-java:2.53.0")
+
+
+	implementation("org.apache.beam:beam-sdks-java-transform-service-launcher:2.53.0")
+	implementation("org.apache.beam:beam-sdks-java-harness:2.53.0")
+	implementation("org.apache.beam:beam-vendor-grpc-1_54_0:0.1")
+	implementation("org.apache.beam:beam-vendor-guava-32_1_2-jre:0.1")
 }
 
 tasks.withType<KotlinCompile> {
