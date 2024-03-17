@@ -47,9 +47,7 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test:3.2.3")
 
 	implementation("org.apache.beam:beam-sdks-java-core:2.53.0")
-	implementation("org.apache.beam:beam-runners-google-cloud-dataflow-java:2.53.0")
-	testImplementation("org.apache.beam:beam-runners-direct-java:2.53.0")
-}
+
 
 tasks.withType<KotlinCompile> {
 	kotlinOptions {
