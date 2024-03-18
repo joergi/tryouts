@@ -22,11 +22,12 @@ jobs:
         run: ls -lah  build/install/apache-beam-dependency-problem/lib
       - name: count dependencies
         run: ls build/install/apache-beam-dependency-problem/lib/ | wc -l
+      - run: ls -lah
       - name: "Check file existence linux 1"
         id: check_files1
         uses: andstor/file-existence-action@v3.0.0
         with:
-          files: "build/install/apache-beam-dependency-problem/lib/beam-sdks-java-harness-2.53.0.jar"
+          files: "./apache-beam-dependency-problem/build/install/apache-beam-dependency-problem/lib/beam-sdks-java-harness-2.53.0.jar"
           fail: true
       - name: File exists
         if: steps.check_files1.outputs.files_exists == 'false'
