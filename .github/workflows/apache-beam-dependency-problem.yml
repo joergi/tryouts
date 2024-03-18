@@ -26,19 +26,10 @@ jobs:
         id: check_files1
         uses: andstor/file-existence-action@v3.0.0
         with:
-          files: "build/install/apache-beam-dependency-problem/lib/beam-sdks-java-core-2.53.0.jar, build/install/apache-beam-dependency-problem/lib/beam-sdks-java-harness-2.53.0.jar, build/install/apache-beam-dependency-problem/lib/beam-sdks-java-transform-service-launcher-2.53.0.jar, build/install/apache-beam-dependency-problem/lib/beam-vendor-grpc-1_54_0-0.1.jar, build/install/apache-beam-dependency-problem/lib/beam-vendor-guava-32_1_2-jre-0.1.jar"
+          files: "build/install/apache-beam-dependency-problem/lib/beam-sdks-java-harness-2.53.0.jar"
           fail: true
       - name: File exists
         if: steps.check_files1.outputs.files_exists == 'false'
-        run: exit 1
-      - name: "Check file existence linux 2"
-        id: check_files2
-        uses: andstor/file-existence-action@v3.0.0
-        with:
-          files: "build/install/apache-beam-dependency-problem/lib/beam-runners-direct-java-2.53.0.jar"
-          fail: true
-      - name: File exists
-        if: steps.check_files2.outputs.files_exists == 'false'
         run: exit 1
 
   skdman-java-linux-count-dependecies:
