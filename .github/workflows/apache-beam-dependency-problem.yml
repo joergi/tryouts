@@ -22,14 +22,23 @@ jobs:
         run: ls -lah  build/install/apache-beam-dependency-problem/lib
       - name: count dependencies
         run: ls build/install/apache-beam-dependency-problem/lib/ | wc -l
-      - name: "Check file existence linux"
-        id: check_files
+      - name: "Check file existence linux 1"
+        id: check_files1
         uses: andstor/file-existence-action@v3.0.0
         with:
-          files: "build/install/apache-beam-dependency-problem/lib/beam-runners-direct-java-2.53.0.jar, build/install/apache-beam-dependency-problem/lib/beam-sdks-java-core-2.53.0.jar, build/install/apache-beam-dependency-problem/lib/beam-sdks-java-harness-2.53.0.jar, build/install/apache-beam-dependency-problem/lib/beam-sdks-java-transform-service-launcher-2.53.0.jar, build/install/apache-beam-dependency-problem/lib/beam-vendor-grpc-1_54_0-0.1.jar, build/install/apache-beam-dependency-problem/lib/beam-vendor-guava-32_1_2-jre-0.1.jar"
+          files: "build/install/apache-beam-dependency-problem/lib/beam-sdks-java-core-2.53.0.jar, build/install/apache-beam-dependency-problem/lib/beam-sdks-java-harness-2.53.0.jar, build/install/apache-beam-dependency-problem/lib/beam-sdks-java-transform-service-launcher-2.53.0.jar, build/install/apache-beam-dependency-problem/lib/beam-vendor-grpc-1_54_0-0.1.jar, build/install/apache-beam-dependency-problem/lib/beam-vendor-guava-32_1_2-jre-0.1.jar"
           fail: true
       - name: File exists
-        if: steps.check_files.outputs.files_exists == 'false'
+        if: steps.check_files1.outputs.files_exists == 'false'
+        run: exit 1
+      - name: "Check file existence linux 2"
+        id: check_files2
+        uses: andstor/file-existence-action@v3.0.0
+        with:
+          files: "build/install/apache-beam-dependency-problem/lib/beam-runners-direct-java-2.53.0.jar"
+          fail: true
+      - name: File exists
+        if: steps.check_files2.outputs.files_exists == 'false'
         run: exit 1
 
   skdman-java-linux-count-dependecies:
@@ -48,14 +57,23 @@ jobs:
         run: ls -lah  build/install/apache-beam-dependency-problem/lib
       - name: count dependencies
         run: ls build/install/apache-beam-dependency-problem/lib/ | wc -l
-      - name: "Check file existence linux sdkman"
-        id: check_files
+      - name: "Check file existence sdkman linux 1"
+        id: check_files1
         uses: andstor/file-existence-action@v3.0.0
         with:
-          files: "build/install/apache-beam-dependency-problem/lib/beam-runners-direct-java-2.53.0.jar, build/install/apache-beam-dependency-problem/lib/beam-sdks-java-core-2.53.0.jar, build/install/apache-beam-dependency-problem/lib/beam-sdks-java-harness-2.53.0.jar, build/install/apache-beam-dependency-problem/lib/beam-sdks-java-transform-service-launcher-2.53.0.jar, build/install/apache-beam-dependency-problem/lib/beam-vendor-grpc-1_54_0-0.1.jar, build/install/apache-beam-dependency-problem/lib/beam-vendor-guava-32_1_2-jre-0.1.jar"
+          files: "build/install/apache-beam-dependency-problem/lib/beam-sdks-java-core-2.53.0.jar, build/install/apache-beam-dependency-problem/lib/beam-sdks-java-harness-2.53.0.jar, build/install/apache-beam-dependency-problem/lib/beam-sdks-java-transform-service-launcher-2.53.0.jar, build/install/apache-beam-dependency-problem/lib/beam-vendor-grpc-1_54_0-0.1.jar, build/install/apache-beam-dependency-problem/lib/beam-vendor-guava-32_1_2-jre-0.1.jar"
           fail: true
       - name: File exists
-        if: steps.check_files.outputs.files_exists == 'false'
+        if: steps.check_files1.outputs.files_exists == 'false'
+        run: exit 1
+      - name: "Check file existence sdkman linux 2"
+        id: check_files2
+        uses: andstor/file-existence-action@v3.0.0
+        with:
+          files: "build/install/apache-beam-dependency-problem/lib/beam-runners-direct-java-2.53.0.jar"
+          fail: true
+      - name: File exists
+        if: steps.check_files2.outputs.files_exists == 'false'
         run: exit 1
 
   mac-count-dependecies:
@@ -75,12 +93,21 @@ jobs:
         run: ls -lah  build/install/apache-beam-dependency-problem/lib
       - name: count dependencies
         run: ls build/install/apache-beam-dependency-problem/lib/ | wc -l
-      - name: "Check file existence mac"
-        id: check_files
+      - name: "Check file existence mac 1"
+        id: check_files1
         uses: andstor/file-existence-action@v3.0.0
         with:
-          files: "build/install/apache-beam-dependency-problem/lib/beam-runners-direct-java-2.53.0.jar, build/install/apache-beam-dependency-problem/lib/beam-sdks-java-core-2.53.0.jar, build/install/apache-beam-dependency-problem/lib/beam-sdks-java-harness-2.53.0.jar, build/install/apache-beam-dependency-problem/lib/beam-sdks-java-transform-service-launcher-2.53.0.jar, build/install/apache-beam-dependency-problem/lib/beam-vendor-grpc-1_54_0-0.1.jar, build/install/apache-beam-dependency-problem/lib/beam-vendor-guava-32_1_2-jre-0.1.jar"
+          files: "build/install/apache-beam-dependency-problem/lib/beam-sdks-java-core-2.53.0.jar, build/install/apache-beam-dependency-problem/lib/beam-sdks-java-harness-2.53.0.jar, build/install/apache-beam-dependency-problem/lib/beam-sdks-java-transform-service-launcher-2.53.0.jar, build/install/apache-beam-dependency-problem/lib/beam-vendor-grpc-1_54_0-0.1.jar, build/install/apache-beam-dependency-problem/lib/beam-vendor-guava-32_1_2-jre-0.1.jar"
           fail: true
       - name: File exists
-        if: steps.check_files.outputs.files_exists == 'false'
+        if: steps.check_files1.outputs.files_exists == 'false'
+        run: exit 1
+      - name: "Check file existence mac 2"
+        id: check_files2
+        uses: andstor/file-existence-action@v3.0.0
+        with:
+          files: "build/install/apache-beam-dependency-problem/lib/beam-runners-direct-java-2.53.0.jar"
+          fail: true
+      - name: File exists
+        if: steps.check_files2.outputs.files_exists == 'false'
         run: exit 1
