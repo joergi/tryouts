@@ -8,6 +8,7 @@ import io.kotest.assertions.*
 import io.kotest.matchers.equals.shouldBeEqual
 import strikt.assertions.*
 import strikt.api.*
+import kotlin.test.assertEquals
 
 class StringTest {
 
@@ -15,10 +16,10 @@ class StringTest {
     val text1 = """Minions ipsum potatoooo belloo! Ti aamoo! La bodaaa hana dul sae me want bananaaa! Butt gelatooo chasy jiji. Ti aamoo! jeje potatoooo belloo! Ti aamoo! Daa gelatooo chasy. Bananaaaa wiiiii daa bananaaaa tatata bala tu. Para tú la bodaaa po kass tulaliloo bee do bee do bee do bappleees bappleees. Ti aa.jmoo! me want bananaaa! Ti aamoo! Tulaliloo bananaaaa. Para tú bee do bee do bee do bananaaaa la bodaaa bee do bee do bee do bee do bee do bee do tatata bala tu poulet tikka masala underweaaar. Bananaaaa underweaaar hahaha daa para tú pepete tatata bala tu belloo!""".trimIndent()
     val text2 = """Minions ipsum potatoooo belloo! Ti aamoo! La bodaaa hana dul sae me want bananaaa! Butt gelatooo chasy jiji. Ti aamoo! jeje potatoooo belloo! Ti aamoo! Daa gelatooo chasy. Bananaaaa wiiiii daa bananaaaa tatata bala tu. Para tú la bodaaa po kass tulaliloo bee do bee do bee do bappleees bappleees. Ti aamoo! me want bananaaa! Ti aamoo! Tulaliloo bananaaaa. Para tú bee do bee do bee do bananaaaa  la bodaaa bee do bee do bee do bee do bee do bee do tatata bala tu poulet tikka masala underweaaar. Bananaaaa underweaaar hahaha daa para tú pepete tatata bala tu belloo!""".trimIndent()
 
-    @Test
-    fun `compare 2 strings  with hamkrest`() {
-        assertThat(text1, equalTo(text2))
-    }
+
+    /******************************************** **/
+    /** you can just click to compare it manually */
+    /*********************************************/
 
     @Test
     fun `compare 2 strings  with strikt_io`() {
@@ -31,9 +32,24 @@ class StringTest {
     }
 
     @Test
+    fun `compare 2 strings  with junit`() {
+        assertEquals(text1, text2)
+    }
+    /*****************************************************************/
+    /** you need to copy + paste the output and compare it manually */
+    /***************************************************************/
+    @Test
+    fun `compare 2 strings  with hamkrest`() {
+        assertThat(text1, equalTo(text2))
+    }
+
+    @Test
     fun `compare 2 strings  with kotest`() {
         text1 shouldBeEqual text2
     }
+
+
+
 
 
 }
