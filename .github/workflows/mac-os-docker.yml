@@ -19,6 +19,8 @@ jobs:
 
       - name: ls
         run: |
+          ls -l $HOME/
+          ls -l $HOME/.orbstack
           ls -l /opt//
           echo "*********"
           ls -l /opt/homebrew/
