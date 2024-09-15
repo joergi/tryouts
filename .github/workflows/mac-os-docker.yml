@@ -17,8 +17,19 @@ jobs:
       - name: Wait for OrbStack to Start
         run: sleep 10
 
+      - name: ls
+        run: |
+          ls -l /opt//
+          echo "*********"
+          ls -l /opt/homebrew/
+          echo "*********"
+          ls -l /opt/homebrew/bin/
       - name: Add OrbStack Docker to PATH
-        run: echo "/opt/orbstack/bin" >> $GITHUB_PATH
+        run: | 
+          echo "/opt/orbstack/bin" >> $GITHUB_PATH
+          echo "/opt/homebrew/bin" >> $GITHUB_PATH
+          
+
 
       - name: Verify Docker Installation
         run: docker --version
