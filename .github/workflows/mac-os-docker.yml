@@ -8,6 +8,9 @@ jobs:
   mac:
     runs-on: macos-latest
     steps:
+      - name: Verify QEMU Installation
+        run: qemu-system-aarch64 --version
+
       - name: Install Colima and Docker
         run: brew install colima docker
 
