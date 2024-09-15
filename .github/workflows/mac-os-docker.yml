@@ -15,7 +15,7 @@ jobs:
       - name: brew orbstack instead of docker
         shell: zsh {0}
         run: |
-          brew install orbstack
+          brew install --cask orbstack
           echo "bash version $BASH_VERSINFO"
           echo "zsh version $ZSH_VERSION"   
           /opt/homebrew/bin/docker --version
