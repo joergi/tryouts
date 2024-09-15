@@ -1,0 +1,31 @@
+name: Macos tryout
+on:
+  push:
+    branches: [ mac]
+  workflow_dispatch: {}
+  mac:
+    runs-on: macos-12
+    steps:
+      - uses: actions/checkout@v4.1.7
+
+      #      - uses: docker-practice/actions-setup-docker@master
+      #        timeout-minutes: 12
+      - name: brew orbstack instead of docker
+        run: |
+          brew install orbstack
+          echo "*******************"
+          echo $PATH
+          echo "*******************"
+          echo "bash version $BASH_VERSINFO"
+          echo "zsh version $ZSH_VERSION"
+          ls -l /usr/local/bin
+          echo "*******************"
+          ls ~/.orbstack/shell
+          echo "*******************"
+          ls -l ~/.orbstack/bin
+          echo "*******************"
+          cat ~/.zprofile 
+          echo "*******************"
+          cat ~/.orbstack/shell/init.zsh
+          echo "*******************"
+          docker
