@@ -1,8 +1,10 @@
 name: Macos tryout
 on:
   push:
-    branches: [ mac ]gst
+    branches: [ mac ]
   workflow_dispatch: {}
+
+jobs:
   mac:
     runs-on: macos-12
     steps:
