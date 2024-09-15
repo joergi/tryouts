@@ -8,17 +8,20 @@ jobs:
   mac:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v4.1.7
+      - name: Install OrbStack
+        run: brew install --cask orbstack
 
-      #      - uses: docker-practice/actions-setup-docker@master
-      #        timeout-minutes: 12
-      - name: brew orbstack instead of docker
-        shell: zsh {0}
-        run: |
-          brew install --cask orbstack
-          echo "bash version $BASH_VERSINFO"
-          echo "zsh version $ZSH_VERSION"   
-          /opt/homebrew/bin/docker --version
+      - name: Open OrbStack
+        run: open -a /Applications/OrbStack.app
+
+      - name: Wait for OrbStack to Start
+        run: sleep 10
+
+      - name: Add OrbStack Docker to PATH
+        run: echo "/opt/orbstack/bin" >> $GITHUB_PATH
+
+      - name: Verify Docker Installation
+        run: docker --version
 
 #      - name: Add OrbStack Docker to PATH
 #        run: |
