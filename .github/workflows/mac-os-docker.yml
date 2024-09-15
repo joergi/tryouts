@@ -18,8 +18,7 @@ jobs:
           brew install orbstack
           echo "bash version $BASH_VERSINFO"
           echo "zsh version $ZSH_VERSION"   
-          ls /opt/orbstack/bin
-          orbstack start
+          ls -lah /opt/
 
 #      - name: Add OrbStack Docker to PATH
 #        run: |
