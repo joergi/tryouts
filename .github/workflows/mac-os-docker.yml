@@ -13,6 +13,7 @@ jobs:
       #      - uses: docker-practice/actions-setup-docker@master
       #        timeout-minutes: 12
       - name: brew orbstack instead of docker
+        shell: zsh
         run: |
           brew install orbstack
           echo "*******************"
@@ -31,3 +32,4 @@ jobs:
           cat ~/.orbstack/shell/init.zsh
           echo "*******************"
           docker
+          
