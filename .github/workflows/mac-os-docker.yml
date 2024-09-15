@@ -1,7 +1,7 @@
 name: Macos tryout
 on:
   push:
-    branches: [ mac]
+    branches: [ mac ]gst
   workflow_dispatch: {}
   mac:
     runs-on: macos-12
