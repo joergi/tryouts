@@ -8,39 +8,16 @@ jobs:
   mac:
     runs-on: macos-latest
     steps:
-      - name: Install OrbStack
-        run: brew install --cask orbstack
-
-      - name: Open OrbStack
-        run: open -a /Applications/OrbStack.app
-
-      - name: Wait for OrbStack to Start
-        run: sleep 20
-
-      - name: /opt/homebrew/bin/orbctl start
+      - name: Install Colima and Docker
         run: |
-          /opt/homebrew/bin/orbctl start
-      - name: Wait for OrbStack to Start
-        run: sleep 20
+          brew install colima docker
 
-      - name: Verify OrbStack Installation
-        run: ls /opt/orbstack
+      - name: Start Colima
+        run: colima start
 
-      - name: Add OrbStack Docker to PATH
-        run: | 
-          echo "/opt/orbstack/bin" >> $GITHUB_PATH
-          echo "/opt/homebrew/bin" >> $GITHUB_PATH
-          
-
+      - name: Add Docker to PATH
+        run: echo "/opt/homebrew/bin" >> $GITHUB_PATH
 
       - name: Verify Docker Installation
         run: docker --version
-
-#      - name: Add OrbStack Docker to PATH
-#        run: |
-#          echo "/opt/orbstack/bin" >> $GITHUB_PATH
-#
-#      - name: Verify Docker Installation
-#        run: docker --version
-#          docker
           
