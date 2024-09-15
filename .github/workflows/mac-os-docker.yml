@@ -16,20 +16,14 @@ jobs:
         shell: zsh {0}
         run: |
           brew install orbstack
-          echo "*******************"
-          echo $PATH
-          echo "*******************"
           echo "bash version $BASH_VERSINFO"
-          echo "zsh version $ZSH_VERSION"
-          ls -l /usr/local/bin
-          echo "*******************"
-          ls ~/.orbstack/shell
-          echo "*******************"
-          ls -l ~/.orbstack/bin
-          echo "*******************"
-          cat ~/.zprofile 
-          echo "*******************"
-          cat ~/.orbstack/shell/init.zsh
-          echo "*******************"
+          echo "zsh version $ZSH_VERSION"      
+
+      - name: Add OrbStack Docker to PATH
+        run: | 
+          echo "/opt/orbstack/bin" >> $GITHUB_PATH
+
+      - name: Verify Docker Installation
+        run: docker --version
           docker
           
