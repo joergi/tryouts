@@ -15,17 +15,17 @@ jobs:
         run: open -a /Applications/OrbStack.app
 
       - name: Wait for OrbStack to Start
-        run: sleep 10
+        run: sleep 20
 
-      - name: ls
+      - name: /opt/homebrew/bin/orbctl start
         run: |
-          ls -l $HOME/
-          ls -l $HOME/.orbstack
-          ls -l /opt//
-          echo "*********"
-          ls -l /opt/homebrew/
-          echo "*********"
-          ls -l /opt/homebrew/bin/
+          /opt/homebrew/bin/orbctl start
+      - name: Wait for OrbStack to Start
+        run: sleep 20
+
+      - name: Verify OrbStack Installation
+        run: ls /opt/orbstack
+
       - name: Add OrbStack Docker to PATH
         run: | 
           echo "/opt/orbstack/bin" >> $GITHUB_PATH
