@@ -9,15 +9,21 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: Install Colima and Docker
+        run: brew install colima docker
+
+      - name: Update Colima
+        run: brew upgrade colima
+
+      - name: Show Colima Logs
         run: |
-          brew install colima docker
+          cat /Users/runner/.colima/_lima/colima/ha.stderr.log || true
+          cat /Users/runner/.colima/_lima/colima/serial*.log || true
 
-      - name: Start Colima
-        run: colima start
-
-      - name: Add Docker to PATH
-        run: echo "/opt/homebrew/bin" >> $GITHUB_PATH
+      - name: Restart and Start Colima
+        run: |
+          colima stop || true
+          colima delete || true
+          colima start
 
       - name: Verify Docker Installation
         run: docker --version
-          
