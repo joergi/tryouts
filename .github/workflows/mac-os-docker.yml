@@ -8,10 +8,20 @@ jobs:
   mac:
     runs-on: macos-13
     steps:
-      - name: Set up Docker
-        uses: appleboy/setup-docker@v1
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install OrbStack
+        run: |
+          curl -fsSL https://orbstack.dev/install.sh | sh
+          orb start &
+          echo "OrbStack started"
+      - name: logs
+        run: cat ~/.orbstack/logs/orbstack.log
+
       - name: Check Docker version
         run: docker --version
+
 
 
 
