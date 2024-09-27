@@ -37,17 +37,19 @@ jobs:
           run: |
             brew install colima 
             brew install --cask docker
-            brew services start colima
+            # brew services start colima
+            colima delete
+            colima start
             # sudo ln -s ~/Library/Containers/com.docker.docker/Data/docker.raw.sock /var/run/docker.sock
 
             # DOCKER_HOST=unix://$HOME/.colima/docker.sock 
 
 
 
-            ls -lah /var/run
+            # ls -lah /var/run
 
             # export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
-            # docker ps # test that it works using linked socket file
+            docker ps # test that it works using linked socket file
 
             # sudo ln -s $HOME/.colima/docker.sock /var/run/docker.sock
             sudo docker info
