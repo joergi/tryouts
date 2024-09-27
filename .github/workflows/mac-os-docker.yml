@@ -21,25 +21,11 @@ jobs:
                   orb start &
                   echo "OrbStack started"
                   orb status
-
-#                  echo "Waiting for OrbStack to be ready..."
-#                  for i in {1..120}; do
-#                    echo "in for loop with $i"
-#                    if orb status | grep -q "running"; then
-#                      echo "OrbStack is running"
-#                      break
-#                    fi
-#                    sleep 2
-#                  done
-
-#                  docker --version
-
                   if [ -f ~/.orbstack/logs/orbstack.log ]; then
                     cat ~/.orbstack/logs/orbstack.log
                   else
                     echo "Log file not found in ~/.orbstack/logs/"
                   fi
 
-                  orb status
 
           
