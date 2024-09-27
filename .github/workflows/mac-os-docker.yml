@@ -49,9 +49,10 @@ jobs:
       - name: "install docker"
         run: |
           echo "Starting Docker installation"
-          brew install docker colima
+          brew update
+          brew upgrade colima lima qemu
           echo "Starting Colima"
-          colima start
+          colima start --timeout 300 --ssh-port 2222
           echo "Colima started"
           SSH_PORT=$(grep -oP 'SSH Local Port: \K\d+' ~/.lima/colima/ha.stderr.log)
           echo "SSH Port: $SSH_PORT"
