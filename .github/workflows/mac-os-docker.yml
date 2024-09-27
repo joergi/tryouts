@@ -36,4 +36,6 @@ jobs:
         - name: Install OrbStack
           run: |
             brew install colima docker
-            colima --help
+            colima init
+            colima start
+            colima run hello-world
