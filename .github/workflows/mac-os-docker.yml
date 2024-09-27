@@ -6,7 +6,7 @@ on:
 
 jobs:
   mac:
-    runs-on: macos-13
+    runs-on: macos-12
     steps:
 #      - name: Install QEMU
 #        run: brew install qemu
@@ -48,9 +48,13 @@ jobs:
 #          docker --version
       - name: install docker
         run: |
+          echo "Starting Docker installation"
           brew install docker colima
+          echo "Starting Colima"
           colima start
+          echo "Colima started"
           SSH_PORT=$(grep -oP 'SSH Local Port: \K\d+' ~/.lima/colima/ha.stderr.log)
+          echo "SSH Port: $SSH_PORT"
           echo "Waiting for SSH to be available on port $SSH_PORT..."
           for i in {1..60}; do
             echo "in for loop with $i"
@@ -60,5 +64,5 @@ jobs:
             sleep 2
           done
           docker --version
-          
+
           
