@@ -38,7 +38,7 @@ jobs:
             brew install colima 
             brew install --cask docker
             # brew services start colima
-            colima delete
+            # colima delete
             colima start
             # sudo ln -s ~/Library/Containers/com.docker.docker/Data/docker.raw.sock /var/run/docker.sock
 
