@@ -44,7 +44,8 @@ jobs:
 
 
 
-            export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
+            ls. -lah $HOME/.colima
+export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
             # docker ps # test that it works using linked socket file
 
             # sudo ln -s $HOME/.colima/docker.sock /var/run/docker.sock
