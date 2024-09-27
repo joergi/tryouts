@@ -8,37 +8,40 @@ jobs:
   mac:
     runs-on: macos-latest
     steps:
-      - name: Install QEMU
-        run: brew install qemu
+#      - name: Install QEMU
+#        run: brew install qemu
+#
+#      - name: Locate QEMU
+#        run: which qemu-system-aarch64
+#
+#      - name: Verify QEMU Installation
+#        run: qemu-system-aarch64 --version
+#
+#      - name: Add QEMU to PATH
+#        run: echo "/opt/homebrew/bin" >> $GITHUB_PATH
+#
+#      - name: Verify QEMU Installation
+#        run: qemu-system-aarch64 --version
+#
+#      - name: Install Colima and Docker
+#        run: brew install colima docker
+#
+#      - name: Update Colima
+#        run: brew upgrade colima
+#
+#      - name: Show Colima Logs
+#        run: |
+#          cat /Users/runner/.colima/_lima/colima/ha.stderr.log || true
+#          cat /Users/runner/.colima/_lima/colima/serial*.log || true
+#
+#      - name: Restart and Start Colima
+#        run: |
+#          colima stop || true
+#          colima delete || true
+#          colima start
 
-      - name: Locate QEMU
-        run: which qemu-system-aarch64
-
-      - name: Verify QEMU Installation
-        run: qemu-system-aarch64 --version
-
-      - name: Add QEMU to PATH
-        run: echo "/opt/homebrew/bin" >> $GITHUB_PATH
-      
-      - name: Verify QEMU Installation
-        run: qemu-system-aarch64 --version
-
-      - name: Install Colima and Docker
-        run: brew install colima docker
-
-      - name: Update Colima
-        run: brew upgrade colima
-
-      - name: Show Colima Logs
+      - name: install docker
         run: |
-          cat /Users/runner/.colima/_lima/colima/ha.stderr.log || true
-          cat /Users/runner/.colima/_lima/colima/serial*.log || true
-
-      - name: Restart and Start Colima
-        run: |
-          colima stop || true
-          colima delete || true
+          brew install docker
           colima start
-
-      - name: Verify Docker Installation
-        run: docker --version
+          docker --version
