@@ -38,9 +38,9 @@ jobs:
             brew install colima 
             brew install --cask docker
             brew services start colima
-            sudo ln -s ~/Library/Containers/com.docker.docker/Data/docker.raw.sock /var/run/docker.sock
+            # sudo ln -s ~/Library/Containers/com.docker.docker/Data/docker.raw.sock /var/run/docker.sock
 
-            DOCKER_HOST=unix:///var/run/docker.sock 
+            DOCKER_HOST=unix://$HOME/.colima/docker.sock 
             # docker ps # test that it works using linked socket file
 
             # sudo ln -s $HOME/.colima/docker.sock /var/run/docker.sock
