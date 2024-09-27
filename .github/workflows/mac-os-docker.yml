@@ -40,9 +40,14 @@ jobs:
 #          colima delete || true
 #          colima start
 
+#      - name: install docker
+#        run: |
+#          brew install --cask docker
+#          sudo /Applications/Docker.app/Contents/MacOS/Docker --unattended --install-privileged-components
+#          open -a /Applications/Docker.app --args --unattended --accept-license
+#          docker --version
       - name: install docker
         run: |
-          brew install --cask docker
-          sudo /Applications/Docker.app/Contents/MacOS/Docker --unattended --install-privileged-components
-          open -a /Applications/Docker.app --args --unattended --accept-license
+          brew install docker colima
+          colima start
           docker --version
