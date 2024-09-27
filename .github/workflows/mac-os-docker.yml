@@ -16,9 +16,6 @@ jobs:
                   echo "Adding OrbStack to PATH"
                   export PATH="$HOME/.orbstack/bin:$PATH"
                   echo "Starting OrbStack"
-#                  orb start
-#                  sleep 10 # Wait for OrbStack to initialize
-                  
                   echo "OrbStack started"
                   echo "before orb status"
                   orb status
