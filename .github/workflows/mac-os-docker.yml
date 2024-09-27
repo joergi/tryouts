@@ -6,69 +6,13 @@ on:
 
 jobs:
   mac:
-    runs-on: macos-12
+    runs-on: macos-13
     steps:
-#      - name: Install QEMU
-#        run: brew install qemu
-#
-#      - name: Locate QEMU
-#        run: which qemu-system-aarch64
-#
-#      - name: Verify QEMU Installation
-#        run: qemu-system-aarch64 --version
-#
-#      - name: Add QEMU to PATH
-#        run: echo "/opt/homebrew/bin" >> $GITHUB_PATH
-#
-#      - name: Verify QEMU Installation
-#        run: qemu-system-aarch64 --version
-#
-#      - name: Install Colima and Docker
-#        run: brew install colima docker
-#
-#      - name: Update Colima
-#        run: brew upgrade colima
-#
-#      - name: Show Colima Logs
-#        run: |
-#          cat /Users/runner/.colima/_lima/colima/ha.stderr.log || true
-#          cat /Users/runner/.colima/_lima/colima/serial*.log || true
-#
-#      - name: Restart and Start Colima
-#        run: |
-#          colima stop || true
-#          colima delete || true
-#          colima start
+      - name: Set up Docker
+        uses: appleboy/setup-docker@v1
+      - name: Check Docker version
+        run: docker --version
 
-#      - name: install docker
-#        run: |
-#          brew install --cask docker
-#          sudo /Applications/Docker.app/Contents/MacOS/Docker --unattended --install-privileged-components
-#          open -a /Applications/Docker.app --args --unattended --accept-license
-#          docker --version
-      - name: "install docker"
-        run: |
-          echo "Starting Docker installation"
-          brew update
-          brew upgrade colima lima qemu
-          echo "Starting Colima"
-          colima start --timeout 300 --ssh-port 2222
-          echo "Colima started"
-          SSH_PORT=$(grep -oP 'SSH Local Port: \K\d+' ~/.lima/colima/ha.stderr.log)
-          echo "SSH Port: $SSH_PORT"
-          echo "Waiting for SSH to be available on port $SSH_PORT..."
-          for i in {1..120}; do
-            echo "in for loop with $i"
-            if ssh -o ConnectTimeout=2 -p $SSH_PORT 127.0.0.1 exit; then
-              echo "SSH connection successful"
-              break
-            fi
-            sleep 2
-          done
-          echo "Checking Docker version"
-          docker --version
-      - name: Output Colima Logs
-        run: cat ~/.lima/colima/ha.stderr.log
 
 
 
