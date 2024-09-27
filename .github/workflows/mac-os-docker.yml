@@ -49,5 +49,15 @@ jobs:
       - name: install docker
         run: |
           brew install docker colima
-          colima start
+              colima start
+              echo "Waiting for SSH to be available..."
+              for i in {1..60}; do
+                if ssh -o ConnectTimeout=2 -p 49204 127.0.0.1 exit; then
+                  break
+                fi
+                sleep 2
+              done
+    
           docker --version
+          
+          
