@@ -4,26 +4,46 @@ on:
     branches: [ mac ]
   workflow_dispatch: {}
 
+
 jobs:
-  mac:
-    runs-on: macos-13
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    mac:
+        runs-on: macos-13
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
 
-      - name: Install OrbStack
-        run: |
-          curl -fsSL https://orbstack.dev/install.sh | sh
-          orb start &
-          echo "OrbStack started"
-      - name: logs
-        run: cat ~/.orbstack/logs/orbstack.log
+            - name: Install OrbStack
+              run: |
+                  echo "Installing OrbStack"
+                  curl -fsSL https://orbstack.dev/install.sh | sh
+                  echo "Starting OrbStack"
+                  orb start &
+                  echo "OrbStack started"
 
-      - name: Check Docker version
-        run: docker --version
+            - name: Wait for OrbStack to be ready
+              run: |
+                  echo "Waiting for OrbStack to be ready..."
+                  for i in {1..120}; do
+                    echo "in for loop with $i"
+                    if orb status | grep -q "running"; then
+                      echo "OrbStack is running"
+                      break
+                    fi
+                    sleep 2
+                  done
 
+            - name: Check Docker version
+              run: docker --version
 
+            - name: Output OrbStack Logs
+              run: |
+                  if [ -f ~/.orbstack/logs/orbstack.log ]; then
+                    cat ~/.orbstack/logs/orbstack.log
+                  else
+                    echo "Log file not found in ~/.orbstack/logs/"
+                  fi
 
-
+            - name: Check OrbStack Status
+              run: orb status
 
           
