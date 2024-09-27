@@ -35,7 +35,8 @@ jobs:
         - uses: actions/checkout@v4
         - name: Install colima
           run: |
-            brew install colima docker
+            brew install colima 
+            brew install --cask docker
             brew services start colima
             sudo ln -s $HOME/.colima/docker.sock /var/run/docker.sock
             docker info
