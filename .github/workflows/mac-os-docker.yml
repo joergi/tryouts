@@ -28,12 +28,10 @@ jobs:
             else
               echo "Log file not found in ~/.orbstack/logs/"
             fi
-                  
-
-          
 
     mac-colima:
       runs-on: macos-14
+      steps:
         - uses: actions/checkout@v4
         - name: Install OrbStack
           run: |
