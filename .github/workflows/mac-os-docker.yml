@@ -49,15 +49,16 @@ jobs:
       - name: install docker
         run: |
           brew install docker colima
-              colima start
-              echo "Waiting for SSH to be available..."
-              for i in {1..60}; do
-                if ssh -o ConnectTimeout=2 -p 49204 127.0.0.1 exit; then
-                  break
-                fi
-                sleep 2
-              done
-    
+          colima start
+          SSH_PORT=$(grep -oP 'SSH Local Port: \K\d+' ~/.lima/colima/ha.stderr.log)
+          echo "Waiting for SSH to be available on port $SSH_PORT..."
+          for i in {1..60}; do
+            echo "in for loop with $i"
+            if ssh -o ConnectTimeout=2 -p $SSH_PORT 127.0.0.1 exit; then
+              break
+            fi
+            sleep 2
+          done
           docker --version
           
           
