@@ -4,7 +4,6 @@ on:
     branches: [ mac ]
   workflow_dispatch: {}
 
-
 jobs:
     mac:
         runs-on: macos-13
@@ -16,6 +15,8 @@ jobs:
               run: |
                   echo "Installing OrbStack"
                   curl -fsSL https://orbstack.dev/install.sh | sh
+                  echo "Adding OrbStack to PATH"
+                  export PATH="$HOME/.orbstack/bin:$PATH"
                   echo "Starting OrbStack"
                   orb start &
                   echo "OrbStack started"
