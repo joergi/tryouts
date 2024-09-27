@@ -42,6 +42,7 @@ jobs:
 
       - name: install docker
         run: |
-          brew install docker
-          colima start
+          brew install --cask docker
+          sudo /Applications/Docker.app/Contents/MacOS/Docker --unattended --install-privileged-components
+          open -a /Applications/Docker.app --args --unattended --accept-license
           docker --version
