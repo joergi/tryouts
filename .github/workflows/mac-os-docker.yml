@@ -33,9 +33,8 @@ jobs:
       runs-on: macos-14
       steps:
         - uses: actions/checkout@v4
-        - name: Install OrbStack
+        - name: Install colima
           run: |
             brew install colima docker
-            colima init
-            colima start
+            brew services start colima
             colima run hello-world
