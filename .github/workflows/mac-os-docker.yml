@@ -44,5 +44,5 @@ jobs:
             # docker ps # test that it works using linked socket file
 
             # sudo ln -s $HOME/.colima/docker.sock /var/run/docker.sock
-            docker info
-            docker run hello-world
+            sudo docker info
+            sudo docker run hello-world
