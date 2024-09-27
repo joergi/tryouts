@@ -6,21 +6,28 @@ on:
 
 jobs:
     mac:
-        runs-on: macos-latest
-        steps:
-            - uses: actions/checkout@v4
-            - name: Install OrbStack
-              run: |
-                  echo "Installing OrbStack"
-                  brew install --cask orbstack
-                  echo "Adding OrbStack to PATH"
-                  export PATH="$HOME/.orbstack/bin:$PATH"
-                  echo "Starting OrbStack"
-                  echo "OrbStack started"
-                  echo "before orb status"
-                  orb status
-                  echo "after orb status"
-                  orb report
+      runs-on: macos-latest
+      steps:
+        - uses: actions/checkout@v4
+        - name: Install OrbStack
+          run: |
+            echo "Installing OrbStack"
+            brew install --cask orbstack
+            echo "Adding OrbStack to PATH"
+            export PATH="/opt/homebrew/bin:$PATH"
+            echo "Starting OrbStack"
+            orb start &
+            sleep 30 # Wait for OrbStack to initialize
+            echo "OrbStack started"
+            echo "before orb status"
+            orb status
+            echo "after orb status"
+            orb report
+            if [ -f ~/.orbstack/logs/orbstack.log ]; then
+              cat ~/.orbstack/logs/orbstack.log
+            else
+              echo "Log file not found in ~/.orbstack/logs/"
+            fi
                   
 
           
