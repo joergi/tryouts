@@ -5,7 +5,6 @@ on:
   workflow_dispatch: {}
 
 jobs:
-
     mac-action:
       runs-on: macos-13
       steps:
@@ -19,21 +18,20 @@ jobs:
     mac-colima:
       strategy:
         matrix:
-          os:
-            - macos-13 # Downgraded due to lack of nested virtualization support in ARM-based runners (See: actions/runner-images#9460, actions/runner-images#9741, abiosoft/colima#1023)
+          os: [macos-13] # Downgraded due to lack of nested virtualization support in ARM-based runners (See: actions/runner-images#9460, actions/runner-images#9741, abiosoft/colima#1023)
         fail-fast: false # Allows to see results from other combinations
-        runs-on: ${{ matrix.os }}
-        steps:
-          - name: Checkout
-            uses: actions/checkout@v4
-          - name: Install Docker on macOS
-            if: contains(matrix.os, 'macos') # macOS runner is missing Docker
-            run: |-
-              # Install Docker
-              brew install docker
-              # Docker on macOS misses daemon due to licensing, so install colima as runtime
-              brew install colima
-              # Start the daemon
-              colima start
-          - name: Build Docker image
-            run: docker run hello-world
+      runs-on: ${{ matrix.os }}
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+        - name: Install Docker on macOS
+          if: contains(matrix.os, 'macos') # macOS runner is missing Docker
+          run: |-
+            # Install Docker
+            brew install docker
+            # Docker on macOS misses daemon due to licensing, so install colima as runtime
+            brew install colima
+            # Start the daemon
+            colima start
+        - name: Build Docker image
+          run: docker run hello-world
