@@ -5,29 +5,6 @@ on:
   workflow_dispatch: {}
 
 jobs:
-#    mac-orbstack:
-#      runs-on: macos-14
-#      steps:
-#        - uses: actions/checkout@v4
-#        - name: Install OrbStack
-#          run: |
-#            echo "Installing OrbStack"
-#            brew install --cask orbstack
-#            echo "Adding OrbStack to PATH"
-#            export PATH="/opt/homebrew/bin:$PATH"
-#            echo "Starting OrbStack"
-#            orb start &
-#            sleep 30 # Wait for OrbStack to initialize
-#            echo "OrbStack started"
-#            echo "before orb status"
-#            orb status
-#            echo "after orb status"
-#            orb report
-#            if [ -f ~/.orbstack/logs/orbstack.log ]; then
-#              cat ~/.orbstack/logs/orbstack.log
-#            else
-#              echo "Log file not found in ~/.orbstack/logs/"
-#            fi
 
     mac-colima:
       runs-on: macos-14
@@ -39,7 +16,7 @@ jobs:
             brew install --cask docker
             # brew services start colima
             # colima delete
-            colima start
+            colima start --cpu 4 --memory 8GiB
             # sudo ln -s ~/Library/Containers/com.docker.docker/Data/docker.raw.sock /var/run/docker.sock
 
             # DOCKER_HOST=unix://$HOME/.colima/docker.sock 
