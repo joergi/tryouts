@@ -17,57 +17,23 @@ jobs:
 
 
     mac-colima:
-      runs-on: macos-14
-      steps:
-        - uses: actions/checkout@v4
-        - name: Install colima
-          run: |
-            brew update
-            brew install colima 
-            brew install qemu
-            brew install --cask docker
-            # brew services start colima
-            colima delete -f || true
-            colima start --cpu=host --disable-hvf
-            # colima start --cpu 4 --memory 8 --vz --vz-rosetta --arch x86_64 --qemu-args="-machine accel=tcg"
-            
-
-            echo "Waiting for Colima to start..."
-            sleep 120  # Increase sleep time
-
-            # Verify Colima status
-            while ! colima status | grep -q 'Running'; do
-              echo "Waiting for Colima to be fully up..."
-              sleep 10
-            done
-            
-            # Verify Colima status
-            colima status
-            
-            # Dynamically extract the SSH port from Colima's status
-            SSH_PORT=$(colima status | grep -oP '(?<=SSH Local Port: )\d+')
-
-            echo "Colima is using SSH port $SSH_PORT"
-
-            # Check if the extracted port is open
-            echo "Checking if port $SSH_PORT is open..."
-            nc -zv 127.0.0.1 $SSH_PORT
-            
-            # sudo ln -s ~/Library/Containers/com.docker.docker/Data/docker.raw.sock /var/run/docker.sock
-
-            # DOCKER_HOST=unix://$HOME/.colima/docker.sock 
-
-
-
-            # ls -lah /var/run
-
-            # export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
-            echo "before d ps"
-            docker ps # test that it works using linked socket file
-
-            # sudo ln -s $HOME/.colima/docker.sock /var/run/docker.sock
-            sudo docker info
-            sudo docker run hello-world
-        - name: Output Colima logs
-          if: failure()
-          run: cat /Users/runner/.colima/_lima/colima/ha.stderr.log
+      strategy:
+        matrix:
+          os:
+            - macos-13 # Downgraded due to lack of nested virtualization support in ARM-based runners (See: actions/runner-images#9460, actions/runner-images#9741, abiosoft/colima#1023)
+        fail-fast: false # Allows to see results from other combinations
+        runs-on: ${{ matrix.os }}
+        steps:
+          - name: Checkout
+            uses: actions/checkout@v4
+          - name: Install Docker on macOS
+            if: contains(matrix.os, 'macos') # macOS runner is missing Docker
+            run: |-
+              # Install Docker
+              brew install docker
+              # Docker on macOS misses daemon due to licensing, so install colima as runtime
+              brew install colima
+              # Start the daemon
+              colima start
+          - name: Build Docker image
+            run: docker run hello-world
