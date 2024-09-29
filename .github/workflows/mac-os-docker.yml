@@ -14,8 +14,8 @@ jobs:
           run: |
             brew update
             brew install colima 
+            brew install qemu
             brew install --cask docker
-            brew install --cask qemu
             # brew services start colima
             colima delete || true
             colima start --cpu 4 --memory 8  --vz-rosetta    
