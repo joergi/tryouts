@@ -28,7 +28,8 @@ jobs:
             brew install --cask docker
             # brew services start colima
             colima delete -f || true
-            colima start --cpu 4 --memory 8 --vz --vz-rosetta --arch x86_64 --qemu-args="-machine accel=tcg"
+            colima start --cpu=host --disable-hvf
+            # colima start --cpu 4 --memory 8 --vz --vz-rosetta --arch x86_64 --qemu-args="-machine accel=tcg"
             
 
             echo "Waiting for Colima to start..."
