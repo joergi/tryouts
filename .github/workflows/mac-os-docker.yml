@@ -16,7 +16,7 @@ jobs:
             brew install --cask docker
             # brew services start colima
             # colima delete
-            colima start --cpu 4 --memory 8 
+            colima start --cpu 4 --memory 8  --vz-rosetta    
 
             echo "Waiting for Colima to start..."
             sleep 10
