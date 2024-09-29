@@ -16,7 +16,14 @@ jobs:
             brew install --cask docker
             # brew services start colima
             # colima delete
-            colima start --cpu 4 --memory 8
+            colima start --cpu 4 --memory 8 --quiet
+
+          echo "Waiting for Colima to start..."
+          sleep 10
+          
+          # Verify Colima status
+          colima status
+
             # sudo ln -s ~/Library/Containers/com.docker.docker/Data/docker.raw.sock /var/run/docker.sock
 
             # DOCKER_HOST=unix://$HOME/.colima/docker.sock 
