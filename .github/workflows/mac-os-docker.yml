@@ -18,11 +18,11 @@ jobs:
             # colima delete
             colima start --cpu 4 --memory 8 --quiet
 
-          echo "Waiting for Colima to start..."
-          sleep 10
+            echo "Waiting for Colima to start..."
+            sleep 10
           
-          # Verify Colima status
-          colima status
+            # Verify Colima status
+            colima status
 
             # sudo ln -s ~/Library/Containers/com.docker.docker/Data/docker.raw.sock /var/run/docker.sock
 
