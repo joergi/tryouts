@@ -6,6 +6,15 @@ on:
 
 jobs:
 
+    mac-action:
+      runs-on: macos-13
+        - name: Setup Docker on macOs
+          uses: douglascamata/setup-docker-macos-action@v1-alpha
+        - name: docker ps
+          run: |
+            docker ps
+
+
     mac-colima:
       runs-on: macos-14
       steps:
