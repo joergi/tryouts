@@ -13,7 +13,7 @@ jobs:
         - name: Install colima
           run: |
             brew update
-            brew install --cask colima 
+            brew install colima 
             brew install --cask docker
             brew install --cask qemu
             # brew services start colima
