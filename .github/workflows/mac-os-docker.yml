@@ -17,18 +17,29 @@ jobs:
             brew install qemu
             brew install --cask docker
             # brew services start colima
-            colima delete || true
+            colima delete -f || true
             colima start --cpu 4 --memory 8  --vz-rosetta    
 
             echo "Waiting for Colima to start..."
-            sleep 60
+            sleep 120  # Increase sleep time
+
+            # Verify Colima status
+            while ! colima status | grep -q 'Running'; do
+              echo "Waiting for Colima to be fully up..."
+              sleep 10
+            done
             
             # Verify Colima status
             colima status
+            
+            # Dynamically extract the SSH port from Colima's status
+            SSH_PORT=$(colima status | grep -oP '(?<=SSH Local Port: )\d+')
 
-            # Check if port 49210 is open
-            echo "Checking if port 49210 is open..."
-            nc -zv 127.0.0.1 49210
+            echo "Colima is using SSH port $SSH_PORT"
+
+            # Check if the extracted port is open
+            echo "Checking if port $SSH_PORT is open..."
+            nc -zv 127.0.0.1 $SSH_PORT
             
             # sudo ln -s ~/Library/Containers/com.docker.docker/Data/docker.raw.sock /var/run/docker.sock
 
@@ -45,3 +56,6 @@ jobs:
             # sudo ln -s $HOME/.colima/docker.sock /var/run/docker.sock
             sudo docker info
             sudo docker run hello-world
+        - name: Output Colima logs
+          if: failure()
+          run: cat /Users/runner/.colima/_lima/colima/ha.stderr.log
