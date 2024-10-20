@@ -13,6 +13,8 @@ jobs:
         - name: docker ps
           run: |
             docker ps
+        - name: run Docker hello-world
+          run: docker run hello-world
 
 
     mac-colima:
