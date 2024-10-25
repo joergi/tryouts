@@ -16,12 +16,13 @@
             repository: joergi/signing-demo
             token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
             path: signing-demo
-        - run: cd signing-demo
-        - run: ls -lah
         - name: Set up JDK 21
           uses: actions/setup-java@v4
           with:
             java-version: '21'
             distribution: 'liberica'
-        - run: javac Main.java
-        - run: java Main
+        - run: | 
+            cd signing-demo
+            ls -lah            
+            javac Main.java
+            java Main
