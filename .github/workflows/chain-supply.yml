@@ -17,6 +17,7 @@
             token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
             path: signing-demo
 #            ref: '1.0.0'
+            ref: '39c520ecfd716e545e9ecb19b1bc69975eaf61f1'
 
         - name: Set up JDK 21
           uses: actions/setup-java@v4
