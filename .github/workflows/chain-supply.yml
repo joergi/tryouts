@@ -1,27 +1,27 @@
-name: Use correct versions
-on:
-  push:
-    branches: [ main ]
-  workflow_dispatch: {}
+  name: Use correct versions
+  on:
+    push:
+      branches: [ main ]
+    workflow_dispatch: {}
 
-jobs:
-  use_correct_versions:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+  jobs:
+    use_correct_versions:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v4
 
-      - name: Checkout another repository
-        uses: actions/checkout@v4
-        with:
-          repository: joergi/signing-demo
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          path: signing-demo
-      - run: ls -lah
-      - run: cd another-repo
-      - name: Set up JDK 21
-        uses: actions/setup-java@v4
-        with:
-          java-version: '21'
-          distribution: 'liberica'
-      - run: javac Main.java
-      - run: java Main
+        - name: Checkout another repository
+          uses: actions/checkout@v4
+          with:
+            repository: joergi/signing-demo
+            token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+            path: signing-demo
+        - run: ls -lah
+        - run: cd signing-demo
+        - name: Set up JDK 21
+          uses: actions/setup-java@v4
+          with:
+            java-version: '21'
+            distribution: 'liberica'
+        - run: javac Main.java
+        - run: java Main
