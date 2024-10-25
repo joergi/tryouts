@@ -13,7 +13,7 @@
         - name: Checkout another repository
           uses: actions/checkout@v4
           with:
-            repository: joergi/signing-demo
+            repository: joergi/signing-demo@1.0.0
             token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
             path: signing-demo
         - name: Set up JDK 21
@@ -21,8 +21,8 @@
           with:
             java-version: '21'
             distribution: 'liberica'
-        - run: | 
+        - name: Run Main.java
+          run: | 
             cd signing-demo
-            ls -lah            
             javac Main.java
             java Main
